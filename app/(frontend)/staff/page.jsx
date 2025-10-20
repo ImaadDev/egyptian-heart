@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react'
 import { useTranslations } from '../../../hooks/useTranslations'
+import SEOHead from '../../../components/SEOHead'
+import { BreadcrumbStructuredData } from '../../../components/StructuredData'
 
 export default function Staff() {
   const { t, isRTL } = useTranslations()
@@ -43,35 +45,35 @@ export default function Staff() {
       id: 'engineering',
       title: t('staff.engineeringTitle'),
       description: t('staff.engineeringDesc'),
-      features: t('staff.engineeringFeatures'),
+      features: Array.isArray(t('staff.engineeringFeatures')) ? t('staff.engineeringFeatures') : [],
       bgImage: backgroundImages[0]
     },
     {
       id: 'production',
       title: t('staff.productionTitle'),
       description: t('staff.productionDesc'),
-      features: t('staff.productionFeatures'),
+      features: Array.isArray(t('staff.productionFeatures')) ? t('staff.productionFeatures') : [],
       bgImage: backgroundImages[1]
     },
     {
       id: 'installation',
       title: t('staff.installationTitle'),
       description: t('staff.installationDesc'),
-      features: t('staff.installationFeatures'),
+      features: Array.isArray(t('staff.installationFeatures')) ? t('staff.installationFeatures') : [],
       bgImage: backgroundImages[2]
     },
     {
       id: 'quality',
       title: t('staff.qualityTitle'),
       description: t('staff.qualityDesc'),
-      features: t('staff.qualityFeatures'),
+      features: Array.isArray(t('staff.qualityFeatures')) ? t('staff.qualityFeatures') : [],
       bgImage: backgroundImages[3]
     },
     {
       id: 'logistics',
       title: t('staff.logisticsTitle'),
       description: t('staff.logisticsDesc'),
-      features: t('staff.logisticsFeatures'),
+      features: Array.isArray(t('staff.logisticsFeatures')) ? t('staff.logisticsFeatures') : [],
       bgImage: backgroundImages[0]
     }
   ];
@@ -96,8 +98,30 @@ export default function Staff() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#000000]">
-      {/* Hero Section */}
+    <>
+      <SEOHead 
+        title="Our Working Staff - Expert Team"
+        description="Meet Al Fouad Company's expert team - Highly skilled professionals with international experience in aluminum, glass, curtain walls, and architectural systems. Engineering, production, installation, and quality assurance specialists."
+        keywords={[
+          'aluminum experts',
+          'glass specialists',
+          'curtain wall engineers',
+          'fabrication team',
+          'installation experts',
+          'quality assurance',
+          'architectural team',
+          'experienced professionals'
+        ]}
+        canonical="/staff"
+      />
+      <BreadcrumbStructuredData 
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Staff', path: '/staff' }
+        ]}
+      />
+      <div className="min-h-screen bg-[#000000]">
+        {/* Hero Section */}
       <section className="relative w-full h-screen overflow-hidden bg-[#000000]">
         <div 
           className="absolute inset-0 bg-cover bg-center z-0 opacity-60 transition-opacity duration-700"
@@ -131,7 +155,7 @@ export default function Staff() {
                   }`}
                   style={{ color: '#e8c74f' }}
                 >
-                  ALUMETAL
+                  {t('hero.companyName')}
                 </span>
               </h1>
             </div>
@@ -280,12 +304,16 @@ export default function Staff() {
                   {department.description}
                 </p>
                 <div className="space-y-3">
-                  {department.features.map((feature, featureIndex) => (
-                    <div key={featureIndex} className="flex items-start">
-                      <span className="text-[#e8c74f] mr-3 text-xl font-light">•</span>
-                      <span className="text-gray-400 font-light leading-relaxed">{feature}</span>
-                    </div>
-                  ))}
+                  {department.features && department.features.length > 0 ? (
+                    department.features.map((feature, featureIndex) => (
+                      <div key={featureIndex} className="flex items-start">
+                        <span className="text-[#e8c74f] mr-3 text-xl font-light">•</span>
+                        <span className="text-gray-400 font-light leading-relaxed">{feature}</span>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="text-gray-400 font-light">Features loading...</p>
+                  )}
                 </div>
               </div>
             ))}
@@ -483,5 +511,6 @@ export default function Staff() {
         </div>
       </section>
     </div>
+    </>
   )
 }

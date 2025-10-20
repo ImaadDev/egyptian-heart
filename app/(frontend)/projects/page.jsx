@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react'
 import { useTranslations } from '../../../hooks/useTranslations'
+import SEOHead from '../../../components/SEOHead'
+import { BreadcrumbStructuredData } from '../../../components/StructuredData'
 
 export default function Projects() {
   const { t, isRTL } = useTranslations()
@@ -59,7 +61,7 @@ export default function Projects() {
       location: t('projects.saudiArabia'),
       description: t('projects.claddingProject1Desc'),
       image: backgroundImages[0],
-      features: t('projects.claddingProject1Features')
+      features: Array.isArray(t('projects.claddingProject1Features')) ? t('projects.claddingProject1Features') : []
     },
     {
       id: 'windows-1',
@@ -68,7 +70,7 @@ export default function Projects() {
       location: t('projects.saudiArabia'),
       description: t('projects.windowsProject1Desc'),
       image: backgroundImages[1],
-      features: t('projects.windowsProject1Features')
+      features: Array.isArray(t('projects.windowsProject1Features')) ? t('projects.windowsProject1Features') : []
     },
     {
       id: 'handrails-1',
@@ -77,7 +79,7 @@ export default function Projects() {
       location: t('projects.saudiArabia'),
       description: t('projects.handrailProject1Desc'),
       image: backgroundImages[2],
-      features: t('projects.handrailProject1Features')
+      features: Array.isArray(t('projects.handrailProject1Features')) ? t('projects.handrailProject1Features') : []
     },
     {
       id: 'doors-1',
@@ -86,7 +88,7 @@ export default function Projects() {
       location: t('projects.saudiArabia'),
       description: t('projects.doorsProject1Desc'),
       image: backgroundImages[3],
-      features: t('projects.doorsProject1Features')
+      features: Array.isArray(t('projects.doorsProject1Features')) ? t('projects.doorsProject1Features') : []
     },
     {
       id: 'facade-1',
@@ -95,7 +97,7 @@ export default function Projects() {
       location: t('projects.saudiArabia'),
       description: t('projects.facadeProject1Desc'),
       image: backgroundImages[0],
-      features: t('projects.facadeProject1Features')
+      features: Array.isArray(t('projects.facadeProject1Features')) ? t('projects.facadeProject1Features') : []
     },
     {
       id: 'shutters-1',
@@ -104,7 +106,7 @@ export default function Projects() {
       location: t('projects.saudiArabia'),
       description: t('projects.shutterProject1Desc'),
       image: backgroundImages[1],
-      features: t('projects.shutterProject1Features')
+      features: Array.isArray(t('projects.shutterProject1Features')) ? t('projects.shutterProject1Features') : []
     },
     {
       id: 'shower-1',
@@ -113,7 +115,7 @@ export default function Projects() {
       location: t('projects.saudiArabia'),
       description: t('projects.showerProject1Desc'),
       image: backgroundImages[2],
-      features: t('projects.showerProject1Features')
+      features: Array.isArray(t('projects.showerProject1Features')) ? t('projects.showerProject1Features') : []
     }
   ];
 
@@ -274,8 +276,31 @@ export default function Projects() {
   }, [selectedImage]);
 
   return (
-    <div className="min-h-screen bg-[#000000]">
-      {/* Hero Section */}
+    <>
+      <SEOHead 
+        title="Our Projects - Aluminum & Glass Portfolio"
+        description="Explore Al Fouad Company's completed aluminum and glass projects. Showcasing curtain walls, facades, cladding systems, windows, doors, and architectural solutions across Saudi Arabia and Egypt."
+        keywords={[
+          'aluminum projects',
+          'glass projects portfolio',
+          'curtain wall projects',
+          'facade projects',
+          'cladding projects',
+          'completed aluminum works',
+          'architectural projects',
+          'commercial aluminum',
+          'residential glass'
+        ]}
+        canonical="/projects"
+      />
+      <BreadcrumbStructuredData 
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Projects', path: '/projects' }
+        ]}
+      />
+      <div className="min-h-screen bg-[#000000]">
+        {/* Hero Section */}
       <section className="relative w-full h-screen overflow-hidden bg-[#000000]">
         <div 
           className="absolute inset-0 bg-cover bg-center z-0 opacity-60 transition-opacity duration-700"
@@ -309,7 +334,7 @@ export default function Projects() {
                   }`}
                   style={{ color: '#e8c74f' }}
                 >
-                  ALUMETAL
+                  {t('hero.companyName')}
                 </span>
               </h1>
             </div>
@@ -453,12 +478,16 @@ export default function Projects() {
                   {project.description}
                 </p>
                 <div className="space-y-2">
-                  {project.features.map((feature, featureIndex) => (
-                    <div key={featureIndex} className="flex items-start">
-                      <span className="text-[#e8c74f] mr-3 text-lg font-light">•</span>
-                      <span className="text-gray-400 font-light">{feature}</span>
-                    </div>
-                  ))}
+                  {Array.isArray(project.features) && project.features.length > 0 ? (
+                    project.features.map((feature, featureIndex) => (
+                      <div key={featureIndex} className="flex items-start">
+                        <span className="text-[#e8c74f] mr-3 text-lg font-light">•</span>
+                        <span className="text-gray-400 font-light">{feature}</span>
+                      </div>
+                    ))
+                  ) : (
+                    null
+                  )}
                 </div>
               </div>
             ))}
@@ -566,7 +595,7 @@ export default function Projects() {
         </div>
       </section>
 
-      {/* Why Choose Alumetal */}
+      {/* Why Choose Al Fouad Company */}
       <section className="relative w-full min-h-screen flex items-center py-32 px-6 overflow-hidden bg-[#000000]">
         <div 
           className="absolute inset-0 bg-cover bg-center z-0 opacity-50 transition-opacity duration-700"
@@ -850,16 +879,17 @@ export default function Projects() {
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-4 text-gray-400 text-sm">
             <span className="flex items-center gap-2">
               <kbd className="px-2 py-1 bg-[#e8c74f]/20 border border-[#e8c74f]/30 text-[#e8c74f]">ESC</kbd>
-              {t('notFound.goBack') || 'Close'}
+              {t('notFound.goBack')}
             </span>
             <span className="flex items-center gap-2">
               <kbd className="px-2 py-1 bg-[#e8c74f]/20 border border-[#e8c74f]/30 text-[#e8c74f]">←</kbd>
               <kbd className="px-2 py-1 bg-[#e8c74f]/20 border border-[#e8c74f]/30 text-[#e8c74f]">→</kbd>
-              Navigate
+              {t('common.navigate')}
             </span>
           </div>
         </div>
       )}
     </div>
+    </>
   )
 }

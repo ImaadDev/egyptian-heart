@@ -57,7 +57,7 @@ export default function ProjectsSection() {
       location: t('projects.saudiArabia'),
       description: t('projects.claddingProject1Desc'),
       image: backgroundImages[0],
-      features: t('projects.claddingProject1Features')
+      features: Array.isArray(t('projects.residentialFeatures')) ? t('projects.residentialFeatures') : []
     },
     {
       id: 'windows-1',
@@ -66,7 +66,7 @@ export default function ProjectsSection() {
       location: t('projects.saudiArabia'),
       description: t('projects.windowsProject1Desc'),
       image: backgroundImages[1],
-      features: t('projects.windowsProject1Features')
+      features: Array.isArray(t('projects.residentialFeatures')) ? t('projects.residentialFeatures') : []
     },
     {
       id: 'handrails-1',
@@ -75,7 +75,7 @@ export default function ProjectsSection() {
       location: t('projects.saudiArabia'),
       description: t('projects.handrailProject1Desc'),
       image: backgroundImages[2],
-      features: t('projects.handrailProject1Features')
+      features: Array.isArray(t('projects.commercialFeatures')) ? t('projects.commercialFeatures') : []
     },
     {
       id: 'doors-1',
@@ -84,7 +84,7 @@ export default function ProjectsSection() {
       location: t('projects.saudiArabia'),
       description: t('projects.doorsProject1Desc'),
       image: backgroundImages[3],
-      features: t('projects.doorsProject1Features')
+      features: Array.isArray(t('projects.industrialFeatures')) ? t('projects.industrialFeatures') : []
     },
     {
       id: 'facade-1',
@@ -93,7 +93,7 @@ export default function ProjectsSection() {
       location: t('projects.saudiArabia'),
       description: t('projects.facadeProject1Desc'),
       image: backgroundImages[0],
-      features: t('projects.facadeProject1Features')
+      features: Array.isArray(t('projects.commercialFeatures')) ? t('projects.commercialFeatures') : []
     },
     {
       id: 'shutters-1',
@@ -102,7 +102,7 @@ export default function ProjectsSection() {
       location: t('projects.saudiArabia'),
       description: t('projects.shutterProject1Desc'),
       image: backgroundImages[1],
-      features: t('projects.shutterProject1Features')
+      features: Array.isArray(t('projects.industrialFeatures')) ? t('projects.industrialFeatures') : []
     }
   ];
 
@@ -180,12 +180,16 @@ export default function ProjectsSection() {
                 {project.description}
               </p>
               <div className="space-y-2">
-                {project.features.map((feature, featureIndex) => (
-                  <div key={featureIndex} className="flex items-start">
-                    <span className="text-[#e8c74f] mr-3 text-lg font-light">•</span>
-                    <span className="text-gray-400 font-light">{feature}</span>
-                  </div>
-                ))}
+                {project.features && project.features.length > 0 ? (
+                  project.features.map((feature, featureIndex) => (
+                    <div key={featureIndex} className="flex items-start">
+                      <span className="text-[#e8c74f] mr-3 text-lg font-light">•</span>
+                      <span className="text-gray-400 font-light">{feature}</span>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-gray-400 font-light">Features loading...</p>
+                )}
               </div>
             </div>
           ))}

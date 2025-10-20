@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react'
 import { useTranslations } from '../../../hooks/useTranslations'
+import SEOHead from '../../../components/SEOHead'
+import { BreadcrumbStructuredData } from '../../../components/StructuredData'
 
 export default function About() {
   const { t, isRTL } = useTranslations()
@@ -39,8 +41,30 @@ export default function About() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#000000]">
-      {/* Hero Section */}
+    <>
+      <SEOHead 
+        title="About Al Fouad Company for Aluminum and PVC Contracting"
+        description="Learn about Al Fouad Company - Leading provider of premium aluminum, glass, and PVC solutions in Saudi Arabia and Egypt. Expert team with international experience in curtain walls, facades, and architectural systems."
+        keywords={[
+          'about al fouad company',
+          'aluminum company saudi arabia',
+          'glass solutions egypt',
+          'curtain wall experts',
+          'architectural aluminum',
+          'PVC contracting',
+          'aluminum fabrication',
+          'construction company'
+        ]}
+        canonical="/about"
+      />
+      <BreadcrumbStructuredData 
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'About', path: '/about' }
+        ]}
+      />
+      <div className="min-h-screen bg-[#000000]">
+        {/* Hero Section */}
       <section className="relative w-full h-screen overflow-hidden bg-[#000000]">
         <div 
           className="absolute inset-0 bg-cover bg-center z-0 opacity-60 transition-opacity duration-700"
@@ -196,7 +220,7 @@ export default function About() {
                 {t('about.weManufacture')}
               </h3>
               <div className="space-y-6">
-                {t('about.servicesList').map((item, index) => (
+                {Array.isArray(t('about.servicesList')) && t('about.servicesList').length > 0 ? t('about.servicesList').map((item, index) => (
                   <div 
                     key={index}
                     className={`flex items-start group transition-all duration-700 ease-out ${
@@ -207,7 +231,7 @@ export default function About() {
                     <span className="text-[#e8c74f] mr-4 text-2xl font-light">—</span>
                     <span className="text-lg md:text-xl text-gray-300 font-light leading-relaxed">{item}</span>
                   </div>
-                ))}
+                )) : null}
               </div>
             </div>
             
@@ -222,7 +246,7 @@ export default function About() {
                 {t('about.ourCapabilities')}
               </h3>
               <div className="space-y-6">
-                {t('about.capabilitiesList').map((item, index) => (
+                {Array.isArray(t('about.capabilitiesList')) && t('about.capabilitiesList').length > 0 ? t('about.capabilitiesList').map((item, index) => (
                   <div 
                     key={index}
                     className={`flex items-start group transition-all duration-700 ease-out ${
@@ -233,7 +257,7 @@ export default function About() {
                     <span className="text-[#e8c74f] mr-4 text-2xl font-light">—</span>
                     <span className="text-lg md:text-xl text-gray-300 font-light leading-relaxed">{item}</span>
                   </div>
-                ))}
+                )) : null}
               </div>
             </div>
           </div>
@@ -307,7 +331,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Why Choose Alumetal */}
+      {/* Why Choose Al Fouad Company */}
       <section className="relative w-full min-h-screen flex items-center py-32 px-6 overflow-hidden bg-[#000000]">
         <div 
           className="absolute inset-0 bg-cover bg-center z-0 transition-all duration-700"
@@ -345,7 +369,7 @@ export default function About() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {t('about.whyChooseCards').map((item, index) => (
+            {Array.isArray(t('about.whyChooseCards')) && t('about.whyChooseCards').length > 0 ? t('about.whyChooseCards').map((item, index) => (
               <div
                 key={index}
                 id={`why-choose-card-${index}`}
@@ -361,7 +385,7 @@ export default function About() {
                 <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">{item.title}</h3>
                 <p className="text-gray-400 font-light leading-relaxed">{item.description}</p>
               </div>
-            ))}
+            )) : null}
           </div>
         </div>
       </section>
@@ -555,5 +579,6 @@ export default function About() {
         </div>
       </section>
     </div>
+    </>
   )
 }

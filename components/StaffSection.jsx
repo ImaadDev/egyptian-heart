@@ -43,28 +43,28 @@ export default function StaffSection() {
       id: 'engineering',
       title: t('staff.engineeringTitle'),
       description: t('staff.engineeringDesc'),
-      features: t('staff.engineeringFeatures'),
+      features: Array.isArray(t('staff.engineeringFeatures')) ? t('staff.engineeringFeatures') : [],
       bgImage: backgroundImages[0]
     },
     {
       id: 'production',
       title: t('staff.productionTitle'),
       description: t('staff.productionDesc'),
-      features: t('staff.productionFeatures'),
+      features: Array.isArray(t('staff.productionFeatures')) ? t('staff.productionFeatures') : [],
       bgImage: backgroundImages[1]
     },
     {
       id: 'installation',
       title: t('staff.installationTitle'),
       description: t('staff.installationDesc'),
-      features: t('staff.installationFeatures'),
+      features: Array.isArray(t('staff.installationFeatures')) ? t('staff.installationFeatures') : [],
       bgImage: backgroundImages[2]
     },
     {
       id: 'quality',
       title: t('staff.qualityTitle'),
       description: t('staff.qualityDesc'),
-      features: t('staff.qualityFeatures'),
+      features: Array.isArray(t('staff.qualityFeatures')) ? t('staff.qualityFeatures') : [],
       bgImage: backgroundImages[3]
     }
   ];
@@ -112,7 +112,7 @@ export default function StaffSection() {
                 isVisible('staff-subtitle') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
             >
-              Highly skilled professionals with international experience in aluminum, glass, and architectural systems
+              {t('home.teamDescription')}
             </p>
           </div>
         </div>
@@ -138,12 +138,16 @@ export default function StaffSection() {
                 {department.description}
               </p>
               <div className="space-y-3">
-                {department.features.map((feature, featureIndex) => (
-                  <div key={featureIndex} className="flex items-start">
-                    <span className="text-[#e8c74f] mr-3 text-xl font-light">•</span>
-                    <span className="text-gray-400 font-light leading-relaxed">{feature}</span>
-                  </div>
-                ))}
+                {department.features && department.features.length > 0 ? (
+                  department.features.map((feature, featureIndex) => (
+                    <div key={featureIndex} className="flex items-start">
+                      <span className="text-[#e8c74f] mr-3 text-xl font-light">•</span>
+                      <span className="text-gray-400 font-light leading-relaxed">{feature}</span>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-gray-400 font-light">Features loading...</p>
+                )}
               </div>
             </div>
           ))}

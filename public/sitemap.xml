@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Home Page -->
+  <url>
+    <loc>https://egyptianheart.com/</loc>
+    <lastmod>2025-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://egyptianheart.com/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://egyptianheart.com/" />
+  </url>
+
+  <!-- About Page -->
+  <url>
+    <loc>https://egyptianheart.com/about</loc>
+    <lastmod>2025-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://egyptianheart.com/about" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://egyptianheart.com/about" />
+  </url>
+
+  <!-- Services Page -->
+  <url>
+    <loc>https://egyptianheart.com/services</loc>
+    <lastmod>2025-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://egyptianheart.com/services" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://egyptianheart.com/services" />
+  </url>
+
+  <!-- Projects Page -->
+  <url>
+    <loc>https://egyptianheart.com/projects</loc>
+    <lastmod>2025-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://egyptianheart.com/projects" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://egyptianheart.com/projects" />
+  </url>
+
+  <!-- Staff Page -->
+  <url>
+    <loc>https://egyptianheart.com/staff</loc>
+    <lastmod>2025-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://egyptianheart.com/staff" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://egyptianheart.com/staff" />
+  </url>
+
+  <!-- Contact Page -->
+  <url>
+    <loc>https://egyptianheart.com/contact</loc>
+    <lastmod>2025-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://egyptianheart.com/contact" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://egyptianheart.com/contact" />
+  </url>
+
+</urlset>
+

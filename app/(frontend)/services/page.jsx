@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react'
 import { useTranslations } from '../../../hooks/useTranslations'
+import SEOHead from '../../../components/SEOHead'
+import { BreadcrumbStructuredData, ServiceStructuredData } from '../../../components/StructuredData'
 
 export default function Services() {
   const { t, isRTL } = useTranslations()
@@ -91,8 +93,38 @@ export default function Services() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#000000]">
-      {/* Hero Section */}
+    <>
+      <SEOHead 
+        title="Aluminum & Glass Services - Windows, Doors, Facades, Curtain Walls"
+        description="Comprehensive aluminum and glass services: Premium windows, doors, curtain wall systems, facades, cladding, shutters, handrails, and shower systems. Expert installation and fabrication in Saudi Arabia and Egypt."
+        keywords={[
+          'aluminum windows',
+          'aluminum doors',
+          'curtain wall systems',
+          'glass facades',
+          'cladding systems',
+          'aluminum shutters',
+          'glass railings',
+          'shower systems',
+          'architectural aluminum',
+          'glass partitions',
+          'PVC windows',
+          'aluminum fabrication'
+        ]}
+        canonical="/services"
+      />
+      <BreadcrumbStructuredData 
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Services', path: '/services' }
+        ]}
+      />
+      <ServiceStructuredData 
+        serviceName="Aluminum and Glass Solutions"
+        description="Complete aluminum, glass, and PVC solutions for residential, commercial, and industrial projects"
+      />
+      <div className="min-h-screen bg-[#000000]">
+        {/* Hero Section */}
       <section className="relative w-full h-screen overflow-hidden bg-[#000000]">
         <div 
           className="absolute inset-0 bg-cover bg-center z-0 opacity-60 transition-opacity duration-700"
@@ -126,7 +158,7 @@ export default function Services() {
                   }`}
                   style={{ color: '#e8c74f' }}
                 >
-                  ALUMETAL
+                  {t('hero.companyName')}
                 </span>
               </h1>
             </div>
@@ -276,7 +308,7 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Why Choose Alumetal */}
+      {/* Why Choose Al Fouad Company */}
       <section className="relative w-full min-h-screen flex items-center py-32 px-6 overflow-hidden bg-[#000000]">
         <div 
           className="absolute inset-0 bg-cover bg-center z-0 opacity-50 transition-opacity duration-700"
@@ -424,5 +456,6 @@ export default function Services() {
         </div>
       </section>
     </div>
+    </>
   )
 }

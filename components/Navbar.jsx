@@ -49,9 +49,9 @@ const Navbar = () => {
   <Link href="/">
     <Image
       src='/Logo.png'
-      alt="Alumetal Logo"
-      width={60}
-      height={30}
+      alt="Al Fouad Company Logo"
+      width={45}
+      height={25}
       className="filter brightness-110 cursor-pointer"
     />
   </Link>
@@ -118,7 +118,7 @@ const Navbar = () => {
           </div>
           <div className="p-6 border-t border-white/10 bg-black/20">
             <div className="text-center space-y-2 mt-4">
-              <p className="text-white/50 text-sm font-medium">© 2025 Alumetal</p>
+              <p className="text-white/50 text-sm font-medium">© 2025 Al Fouad Company</p>
               <p className="text-white/30 text-xs">Expert Aluminum & Glass Solutions</p>
             </div>
           </div>
